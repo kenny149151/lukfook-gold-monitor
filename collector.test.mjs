@@ -1,4 +1,5 @@
 import test from 'node:test';
+import './dashboard.test.mjs';
 import assert from 'node:assert/strict';
 import {parseOfficial,parseHistory,parseBullion,mergeQuote,todayCN} from './collect-prices.mjs';
 const fixture=(time='2026-09-07 17:10:00')=>['足金(克):1327','足铂金(克):725','铂金950(克):696','黄金添富金章金条(克):1168'].map(s=>{const [k,v]=s.split(':');return `<span class="name-key" data-v-x>${k}</span><span data-v-x>：${v}元/克</span>`}).join('')+'更新时间：'+time;
