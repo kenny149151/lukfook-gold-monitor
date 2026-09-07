@@ -1,0 +1,25 @@
+{
+  "url": "https://kenny149151.github.io/lukfook-gold-monitor/",
+  "checks": [
+    {
+      "test": "原始二维码",
+      "decoded": "https://kenny149151.github.io/lukfook-gold-monitor/"
+    },
+    {
+      "test": "完整分享图",
+      "decoded": "https://kenny149151.github.io/lukfook-gold-monitor/"
+    },
+    {
+      "test": "分享图600宽",
+      "decoded": "https://kenny149151.github.io/lukfook-gold-monitor/"
+    },
+    {
+      "test": "分享图360宽",
+      "decoded": "https://kenny149151.github.io/lukfook-gold-monitor/"
+    },
+    {
+      "test": "600宽JPEG压缩70质量",
+      "decoded": "https://kenny149151.github.io/lukfook-gold-monitor/"
+    }
+  ]
+}
