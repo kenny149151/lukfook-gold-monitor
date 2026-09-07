@@ -45,6 +45,7 @@
       .series-controls{gap:8px}.series-toggle{flex:1 0 28%;padding:8px}.series-toggle input{width:18px;height:18px}
       .stock-chart-wrap,.chart-wrap{width:100%;height:auto;padding:0;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
       .stock-chart-wrap svg,.chart-wrap svg{display:block;width:960px;min-width:960px;height:352px;max-width:none;aspect-ratio:1200/440}
+      .stock-axis{font-size:17px}.stock-line{stroke-width:3}.stock-line.ma{stroke-width:3}
       .calendar-stack.three-calendar{display:block}.calendar-viewport{width:100%;margin-bottom:18px;border:1px solid var(--line)}
       .three-calendar .calendar-card{width:900px;min-width:900px;min-height:0;height:506.25px;aspect-ratio:16/9;border:0}
       .three-calendar .calendar-title{padding:10px 14px;min-height:50px}.three-calendar .calendar-title strong{font-size:19px}
@@ -184,7 +185,7 @@
     async function syncFromOfficial(){try{var res=await fetch('./lukfook-prices.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('not ok');var payload=await res.json();applyLiveRecords(Array.isArray(payload)?payload:payload.records,'server');document.getElementById('syncState').textContent='自动同步已连接｜每 30 分钟检查'}catch(e){document.getElementById('syncState').textContent='本地模式｜启动同步服务后自动更新'}}
     function startLivePage(){applyLiveRecords(embeddedTrendData,'embedded');syncFromOfficial();setInterval(syncFromOfficial,30*60*1000);window.addEventListener('focus',syncFromOfficial)}
 
-    const embeddedSyncStatus = {"schemaVersion":2,"checkedAt":"2026-09-07T14:54:31.751Z","today":"2026-09-07","lastSuccessAt":"2026-09-07T14:54:31.751Z","officialQuotedAt":"2026-09-07 17:10:00","intervalMinutes":30,"sources":[{"name":"金价网历史表","url":"https://www.jinjia.com.cn/lukfook/history.html","ok":true,"latestDate":"2026-09-07","records":100},{"name":"新浪财经内地金条","url":"https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15","ok":true,"latestDate":"2026-09-07","records":16},{"name":"六福官方商城","url":"https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS","ok":true,"latestDate":"2026-09-07","records":1}],"errors":[],"latestDate":"2026-09-07","recordCount":128,"state":"ok","missingDates":[]};
+    const embeddedSyncStatus = {"schemaVersion":2,"checkedAt":"2026-09-07T15:24:32.399Z","today":"2026-09-07","lastSuccessAt":"2026-09-07T15:24:32.399Z","officialQuotedAt":"2026-09-07 17:10:00","intervalMinutes":30,"sources":[{"name":"金价网历史表","url":"https://www.jinjia.com.cn/lukfook/history.html","ok":true,"latestDate":"2026-09-07","records":100},{"name":"新浪财经内地金条","url":"https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15","ok":true,"latestDate":"2026-09-07","records":16},{"name":"六福官方商城","url":"https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS","ok":true,"latestDate":"2026-09-07","records":1}],"errors":[],"latestDate":"2026-09-07","recordCount":128,"state":"ok","missingDates":[]};
     let lastSyncStatus=embeddedSyncStatus, syncBusy=false;
     const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const localToday=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
