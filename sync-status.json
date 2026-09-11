@@ -1,38 +1,36 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-09-11T00:08:21.952Z",
+  "checkedAt": "2026-09-11T04:35:37.383Z",
   "today": "2026-09-11",
-  "lastSuccessAt": "2026-09-11T00:08:21.952Z",
-  "officialQuotedAt": "2026-09-10 11:20:00",
+  "lastSuccessAt": "2026-09-11T04:35:37.383Z",
+  "officialQuotedAt": "2026-09-11 12:34:00",
   "intervalMinutes": 30,
   "sources": [
     {
       "name": "金价网历史表",
       "url": "https://www.jinjia.com.cn/lukfook/history.html",
       "ok": true,
-      "latestDate": "2026-09-10",
+      "latestDate": "2026-09-11",
       "records": 100
     },
     {
       "name": "新浪财经内地金条",
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
       "ok": true,
-      "latestDate": "2026-09-10",
-      "records": 16
+      "latestDate": "2026-09-11",
+      "records": 17
     },
     {
       "name": "六福官方商城",
       "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
       "ok": true,
-      "latestDate": "2026-09-10",
+      "latestDate": "2026-09-11",
       "records": 1
     }
   ],
   "errors": [],
-  "latestDate": "2026-09-10",
-  "recordCount": 131,
-  "state": "awaiting_quote",
-  "missingDates": [
-    "2026-09-11"
-  ]
+  "latestDate": "2026-09-11",
+  "recordCount": 132,
+  "state": "ok",
+  "missingDates": []
 }
