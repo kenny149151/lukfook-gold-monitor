@@ -4,12 +4,42 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 const html=await readFile(new URL('./lukfook-mainland-gold-dashboard.html',import.meta.url),'utf8');
 const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/    startLivePage\(\);\s*$/,'');
-const node={innerHTML:'',textContent:'',parentElement:{innerHTML:''}};
-const context={document:{querySelector:()=>node,querySelectorAll:()=>[]},window:{}};
+const elements=new Map();
+function element(key){
+  if(!elements.has(key))elements.set(key,{innerHTML:'',textContent:'',value:'',style:{},classList:{add(){},remove(){}},parentElement:{innerHTML:''},addEventListener(){},after(){},prepend(){},querySelector(s){return element(key+' '+s);}});
+  return elements.get(key);
+}
+const context={Intl,Date,setInterval(){},setTimeout(){},location:{pathname:'/',protocol:'file:'},document:{hidden:false,body:element('body'),createElement:()=>element('new'),getElementById:id=>element('#'+id),querySelector:element,querySelectorAll:s=>s==='.series-toggle'?[]:Array.from({length:4},(_,i)=>element(s+i))},window:{addEventListener(){}}};
 vm.createContext(context);
 vm.runInContext(script+'\nthis.api={quoteChanges,monthSummary,calculateTrendMA,smoothSegments,curvePath};',context);
 const {quoteChanges,monthSummary,calculateTrendMA,smoothSegments,curvePath}=context.api;
 const data=JSON.parse(await readFile(new URL('./lukfook-prices.json',import.meta.url),'utf8')).map(r=>({...r,dateKey:r.date,dateLabel:r.date.replaceAll('-','/')}));
+const run=s=>vm.runInContext(s,context);
+run("applyLiveRecords(embeddedTrendData,'embedded')");
+test('all calendars and both charts default to complete history',()=>{
+  for(const name of ['goldRange','trendRange','calendarPeriod'])assert.equal(run(name),'all');
+  assert.equal(run('historyData[0].dateKey'),'2026-04-20');
+});
+test('new months and years appear without fabricating prices, including beyond 2028',()=>{
+  const count=run('historyData.length');
+  for(const date of ['2026-10-01','2026-11-01','2026-12-01','2027-01-01','2029-01-01']){
+    run(`previewDate='${date}';refreshDatePeriods()`);
+    assert.equal(run('availablePeriods(historyData).months.at(-1)'),date.slice(0,7));
+    assert.ok(element('#mainPeriodSelect').innerHTML.includes('value="'+date.slice(0,7)+'"'));
+    assert.ok(element('#goldMonthSelect').innerHTML.includes('value="'+date.slice(0,7)+'"'));
+    assert.equal(run('historyData.length'),count);
+  }
+  assert.equal(run("periodRows(historyData,'current-month').length"),0);
+  assert.equal(run("periodRows(historyData,'current-year').length"),0);
+  assert.equal(run("periodRows(historyData,'all').length"),count);
+  run("setMainPeriod('current-month')");
+  assert.ok(element('#fullTrendChart').innerHTML.includes('暂无已核实报价'));
+  assert.ok(!element('#message').textContent.includes('本月已记录'));
+  assert.ok(run("monthCalendarHTML('2028-02')").includes('data-date="2028-02-29"'));
+  assert.equal(run("normalizeTrendRecords([{date:'2029-01-01',gold:1300}]).length"),1);
+  assert.equal(run("normalizeTrendRecords([{date:'2029-01-02',gold:1300}]).length"),0);
+  run("previewDate=null;trendRange='all'");
+});
 test('September first day includes Aug 31 and monthly totals telescope',()=>{
   const stats=monthSummary(data.filter(r=>r.dateKey<='2026-09-07'),'2026-09');
   assert.equal(stats.first.change,-6);assert.equal(stats.baseline.dateKey,'2026-08-31');

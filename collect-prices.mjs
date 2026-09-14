@@ -41,7 +41,7 @@ export function parseBullion(html){
   return rows;
 }
 export function mergeQuote(map,row,rank,today=todayCN()){
-  if(!validDate(row.date)||row.date<'2026-04-20'||row.date>'2028-12-31'||row.date>today)return false;
+  if(!validDate(row.date)||row.date<'2026-04-20'||row.date>today)return false;
   const old=map.get(row.date)||{date:row.date},next={...old,fieldSources:{...old.fieldSources}};
   let changed=false;
   for(const f of FIELDS){
@@ -86,7 +86,7 @@ export async function collect(root=ROOT){
   for(let i=0;i<jobs.length;i++){
     const j=jobs[i],result=results[i];
     if(result.status==='rejected'){status.errors.push(j.name+'：'+result.reason.message);status.sources.push({name:j.name,url:j.url,ok:false});continue;}
-    const rows=result.value.filter(r=>validDate(r.date)&&r.date<=today&&r.date<='2028-12-31');
+    const rows=result.value.filter(r=>validDate(r.date)&&r.date<=today);
     if(!rows.length){status.errors.push(j.name+'：没有有效日期报价');continue;}
     success++;for(const r of rows)mergeQuote(map,r,j.rank,today);
     const latest=rows.map(r=>r.date).sort().at(-1);
@@ -99,7 +99,7 @@ export async function collect(root=ROOT){
   status.latestDate=records.at(-1).date;status.recordCount=records.length;status.state=success===0?'error':status.latestDate<today?'awaiting_quote':status.errors.length?'partial':'ok';
   if(success)status.lastSuccessAt=now.toISOString();
   status.missingDates=[];
-  for(let d=new Date('2026-08-26T00:00:00Z');d.toISOString().slice(0,10)<=today&&d.toISOString().slice(0,10)<='2028-12-31';d.setUTCDate(d.getUTCDate()+1))if(!map.has(d.toISOString().slice(0,10)))status.missingDates.push(d.toISOString().slice(0,10));
+  for(let d=new Date('2026-08-26T00:00:00Z');d.toISOString().slice(0,10)<=today;d.setUTCDate(d.getUTCDate()+1))if(!map.has(d.toISOString().slice(0,10)))status.missingDates.push(d.toISOString().slice(0,10));
   await atomicJSON(path.join(root,'sync-status.json'),status);
   await buildSite(root,records,status);
   console.log(JSON.stringify({state:status.state,latest:records.at(-1),missingDates:status.missingDates,errors:status.errors}));
