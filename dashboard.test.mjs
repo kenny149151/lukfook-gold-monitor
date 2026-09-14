@@ -9,13 +9,30 @@ function element(key){
   if(!elements.has(key))elements.set(key,{innerHTML:'',textContent:'',value:'',style:{},classList:{add(){},remove(){}},parentElement:{innerHTML:''},addEventListener(){},after(){},prepend(){},querySelector(s){return element(key+' '+s);}});
   return elements.get(key);
 }
-const context={Intl,Date,setInterval(){},setTimeout(){},location:{pathname:'/',protocol:'file:'},document:{hidden:false,body:element('body'),createElement:()=>element('new'),getElementById:id=>element('#'+id),querySelector:element,querySelectorAll:s=>s==='.series-toggle'?[]:Array.from({length:4},(_,i)=>element(s+i))},window:{addEventListener(){}}};
+const context={Intl,Date,AbortSignal,setInterval(){},setTimeout(){},location:{pathname:'/',protocol:'file:'},document:{hidden:false,addEventListener(){},body:element('body'),createElement:()=>element('new'),getElementById:id=>element('#'+id),querySelector:element,querySelectorAll:s=>s==='.series-toggle'?[]:Array.from({length:4},(_,i)=>element(s+i))},window:{addEventListener(){}}};
 vm.createContext(context);
 vm.runInContext(script+'\nthis.api={quoteChanges,monthSummary,calculateTrendMA,smoothSegments,curvePath};',context);
 const {quoteChanges,monthSummary,calculateTrendMA,smoothSegments,curvePath}=context.api;
 const data=JSON.parse(await readFile(new URL('./lukfook-prices.json',import.meta.url),'utf8')).map(r=>({...r,dateKey:r.date,dateLabel:r.date.replaceAll('-','/')}));
 const run=s=>vm.runInContext(s,context);
 run("applyLiveRecords(embeddedTrendData,'embedded')");
+test('local HTML polls live HTTPS data, never stale local JSON',async()=>{
+  const calls=[];
+  context.fetch=async url=>{calls.push(url);return {ok:true,json:async()=>run(url.includes('sync-status')?'embeddedSyncStatus':'embeddedTrendData')};};
+  await run('syncFromOfficial()');
+  assert.equal(calls.length,2);
+  assert.ok(calls.every(url=>url.startsWith('https://kenny149151.github.io/lukfook-gold-monitor/')));
+  assert.ok(!element('#syncState').textContent.includes('连接失败'));
+});
+test('older or incomplete snapshots cannot erase newer price history',()=>{
+  const validate=run('validateIncomingSnapshot');
+  const existing=[{dateKey:'2026-09-07',gold:1327},{dateKey:'2026-09-14',gold:1306,quotedAt:'2026-09-14 11:17:00'}];
+  const status={checkedAt:'2026-09-15T00:00:00Z',latestDate:'2026-09-07',recordCount:1};
+  assert.throws(()=>validate([{date:'2026-09-07',gold:1327}],status,existing),/回退/);
+  assert.throws(()=>validate([{date:'2026-09-14',gold:1306}],{...status,latestDate:'2026-09-14'},existing),/不完整/);
+  const complete=existing.map(({dateKey,...r})=>({date:dateKey,...r}));
+  assert.equal(validate(complete,{...status,latestDate:'2026-09-14',recordCount:2},existing).length,2);
+});
 test('all calendars and both charts default to complete history',()=>{
   for(const name of ['goldRange','trendRange','calendarPeriod'])assert.equal(run(name),'all');
   assert.equal(run('historyData[0].dateKey'),'2026-04-20');

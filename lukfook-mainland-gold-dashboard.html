@@ -86,6 +86,7 @@
       #mainPeriodSelect,#calendarPeriodSelect{font-size:16px;flex:1;min-width:0}.preview-banner{padding:12px;font-size:12px}
     }
 
+    .local-live-notice{padding:12px 20px;background:#f4ead7;color:#725226;font-size:14px;line-height:1.7;overflow-wrap:anywhere}.local-live-notice a{color:#705020;text-decoration:underline;font-weight:700}
   </style>
 </head>
 <body>
@@ -211,7 +212,7 @@
     async function syncFromOfficial(){try{var res=await fetch('./lukfook-prices.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('not ok');var payload=await res.json();applyLiveRecords(Array.isArray(payload)?payload:payload.records,'server');document.getElementById('syncState').textContent='自动同步已连接｜每 30 分钟检查'}catch(e){document.getElementById('syncState').textContent='本地模式｜启动同步服务后自动更新'}}
     function startLivePage(){applyLiveRecords(embeddedTrendData,'embedded');syncFromOfficial();setInterval(syncFromOfficial,30*60*1000);window.addEventListener('focus',syncFromOfficial)}
 
-    const embeddedSyncStatus = {"schemaVersion":2,"checkedAt":"2026-09-14T22:44:17.956Z","today":"2026-09-15","lastSuccessAt":"2026-09-14T22:44:17.956Z","officialQuotedAt":"2026-09-14 11:17:00","intervalMinutes":30,"sources":[{"name":"金价网历史表","url":"https://www.jinjia.com.cn/lukfook/history.html","ok":true,"latestDate":"2026-09-14","records":100},{"name":"新浪财经内地金条","url":"https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15","ok":true,"latestDate":"2026-09-14","records":17},{"name":"六福官方商城","url":"https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS","ok":true,"latestDate":"2026-09-14","records":1}],"errors":[],"latestDate":"2026-09-14","recordCount":134,"state":"awaiting_quote","missingDates":["2026-09-13","2026-09-15"]};
+    const embeddedSyncStatus = {"schemaVersion":2,"checkedAt":"2026-09-14T23:37:30.961Z","today":"2026-09-15","lastSuccessAt":"2026-09-14T23:37:30.961Z","officialQuotedAt":"2026-09-14 11:17:00","intervalMinutes":30,"sources":[{"name":"金价网历史表","url":"https://www.jinjia.com.cn/lukfook/history.html","ok":true,"latestDate":"2026-09-14","records":100},{"name":"新浪财经内地金条","url":"https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15","ok":true,"latestDate":"2026-09-14","records":17},{"name":"六福官方商城","url":"https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS","ok":true,"latestDate":"2026-09-14","records":1}],"errors":[],"latestDate":"2026-09-14","recordCount":134,"state":"awaiting_quote","missingDates":["2026-09-13","2026-09-15"]};
     let lastSyncStatus=embeddedSyncStatus, syncBusy=false;
     const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const localToday=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
@@ -256,23 +257,35 @@
       document.getElementById('syncBadge').textContent='报价 '+latestTrend().dateLabel;
       document.getElementById('syncDetails').textContent='最近采集：'+displayTime(s.checkedAt)+'（北京时间）｜官方报价：'+(s.officialQuotedAt||'待核实')+'｜计划每30分钟采集；GitHub任务可能延迟。'+(s.errors?.length?' '+s.errors.join('；'):'');
     }
+    const PUBLIC_DASHBOARD='https://kenny149151.github.io/lukfook-gold-monitor/';
+    function validateIncomingSnapshot(data,status,current=historyData){
+      if(!Array.isArray(data)||!data.length||!status?.checkedAt||!Number.isFinite(Date.parse(status.checkedAt)))throw Error('数据格式无效，保留已有记录');
+      const byDate=new Map(data.map(r=>[r.date,r]));
+      if(byDate.size!==data.length)throw Error('来源包含重复日期，保留已有记录');
+      const newest=data.map(r=>r.date).sort().at(-1),previous=current.at(-1);
+      if(newest!==status.latestDate||data.length!==status.recordCount)throw Error('报价与状态尚未同步，稍后重试');
+      if(previous&&newest<previous.dateKey)throw Error('收到较旧快照，已阻止数据回退');
+      if(previous&&newest===previous.dateKey&&previous.quotedAt&&byDate.get(newest)?.quotedAt&&byDate.get(newest).quotedAt<previous.quotedAt)throw Error('收到较早的同日报价，已保留较晚记录');
+      for(const old of current){const next=byDate.get(old.dateKey);if(!next||['gold','tianfu','platinum','pt950'].some(f=>Number.isFinite(old[f])&&!Number.isFinite(next[f])))throw Error('收到不完整历史，已保留已有报价');}
+      return data;
+    }
     async function syncFromOfficial(){
       if(syncBusy)return;
-      if(location.protocol==='file:'){showSyncStatus(lastSyncStatus,true);return;}
       syncBusy=true;
       try{
-        const stamp=Date.now();const responses=await Promise.all([fetch('./lukfook-prices.json?t='+stamp,{cache:'no-store',signal:AbortSignal.timeout(15000)}),fetch('./sync-status.json?t='+stamp,{cache:'no-store',signal:AbortSignal.timeout(15000)})]);
+        const stamp=Date.now(),base=location.protocol==='file:'?PUBLIC_DASHBOARD:'./';const responses=await Promise.all([fetch(base+'lukfook-prices.json?t='+stamp,{cache:'no-store',signal:AbortSignal.timeout(15000)}),fetch(base+'sync-status.json?t='+stamp,{cache:'no-store',signal:AbortSignal.timeout(15000)})]);
         if(responses.some(r=>!r.ok))throw Error('数据或采集状态不可达');
         const [data,status]=await Promise.all(responses.map(r=>r.json()));
-        if(!Array.isArray(data)||!data.length||!status.checkedAt)throw Error('数据格式无效');
+        validateIncomingSnapshot(data,status);
         lastSyncStatus=status;applyLiveRecords(data,'server');showSyncStatus(status);
       }catch(e){document.getElementById('syncState').textContent='连接失败｜显示已保存数据';document.getElementById('syncDetails').textContent='最近成功采集：'+displayTime(lastSyncStatus.checkedAt)+'。'+e.message;}
       finally{syncBusy=false;}
     }
     function startLivePage(){
+      if(location.protocol==='file:'){const notice=document.createElement('aside');notice.className='local-live-notice';notice.innerHTML='本地页面会自动连接线上数据；日常使用请收藏 <a href="'+PUBLIC_DASHBOARD+'">六福内地金价监测正式网站 ↗</a>，页面升级也会自动生效。';document.body.prepend(notice);}
       const detail=document.createElement('p');detail.id='syncDetails';detail.className='sub';detail.style.cssText='margin:12px 0;overflow-wrap:anywhere';document.querySelector('.trend-head').after(detail);
-      applyLiveRecords(embeddedTrendData,'embedded');showSyncStatus(lastSyncStatus,location.protocol==='file:');syncFromOfficial();setInterval(syncFromOfficial,60000);window.addEventListener('focus',syncFromOfficial);
-      setInterval(()=>{if(!document.hidden)showSyncStatus(lastSyncStatus,location.protocol==='file:');},60000);
+      applyLiveRecords(embeddedTrendData,'embedded');showSyncStatus(lastSyncStatus);syncFromOfficial();setInterval(syncFromOfficial,60000);window.addEventListener('focus',syncFromOfficial);
+      document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncFromOfficial();});
     }
     // One comparison model for calendars, metrics and monthly summaries.
     function quoteChanges(records){
