@@ -21,6 +21,8 @@ test('all calendars and both charts default to complete history',()=>{
   assert.equal(run('historyData[0].dateKey'),'2026-04-20');
 });
 test('new months and years appear without fabricating prices, including beyond 2028',()=>{
+  // Use a fixed historical window so this test keeps passing as real data grows.
+  run("var savedHistoryForTest=historyData;historyData=historyData.filter(r=>r.dateKey<='2026-09-14')");
   const count=run('historyData.length');
   for(const date of ['2026-10-01','2026-11-01','2026-12-01','2027-01-01','2029-01-01']){
     run(`previewDate='${date}';refreshDatePeriods()`);
@@ -38,7 +40,7 @@ test('new months and years appear without fabricating prices, including beyond 2
   assert.ok(run("monthCalendarHTML('2028-02')").includes('data-date="2028-02-29"'));
   assert.equal(run("normalizeTrendRecords([{date:'2029-01-01',gold:1300}]).length"),1);
   assert.equal(run("normalizeTrendRecords([{date:'2029-01-02',gold:1300}]).length"),0);
-  run("previewDate=null;trendRange='all'");
+  run("historyData=savedHistoryForTest;previewDate=null;trendRange='all'");
 });
 test('September first day includes Aug 31 and monthly totals telescope',()=>{
   const stats=monthSummary(data.filter(r=>r.dateKey<='2026-09-07'),'2026-09');
