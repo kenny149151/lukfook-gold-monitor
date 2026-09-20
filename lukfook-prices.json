@@ -1907,5 +1907,35 @@
     "note": "内地金条报价；官方添富金优先",
     "tianfu": 1158,
     "platinum": 723
+  },
+  {
+    "date": "2026-09-20",
+    "fieldSources": {
+      "gold": {
+        "name": "金价网历史表",
+        "url": "https://www.jinjia.com.cn/lukfook/history.html",
+        "rank": 20,
+        "quotedAt": null
+      },
+      "pt950": {
+        "name": "金价网历史表",
+        "url": "https://www.jinjia.com.cn/lukfook/history.html",
+        "rank": 20,
+        "quotedAt": null
+      },
+      "tianfu": {
+        "name": "新浪财经内地金条历史表",
+        "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
+        "rank": 20,
+        "quotedAt": null
+      }
+    },
+    "gold": 1314,
+    "pt950": 694,
+    "source": "金价网历史表",
+    "sourceUrl": "https://www.jinjia.com.cn/lukfook/history.html",
+    "quotedAt": null,
+    "note": "内地金条报价；官方添富金优先",
+    "tianfu": 1158
   }
 ]
