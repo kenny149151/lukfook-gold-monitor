@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-09-20T12:19:23.535Z",
-  "today": "2026-09-20",
-  "lastSuccessAt": "2026-09-20T12:19:23.535Z",
+  "checkedAt": "2026-09-20T16:28:53.214Z",
+  "today": "2026-09-21",
+  "lastSuccessAt": "2026-09-20T16:28:53.214Z",
   "officialQuotedAt": "2026-09-19 09:48:00",
   "intervalMinutes": 30,
   "sources": [
@@ -18,21 +18,22 @@
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
       "ok": true,
       "latestDate": "2026-09-20",
-      "records": 17
+      "records": 16
     },
     {
       "name": "六福官方商城",
       "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
-      "ok": true,
-      "latestDate": "2026-09-19",
-      "records": 1
+      "ok": false
     }
   ],
-  "errors": [],
+  "errors": [
+    "六福官方商城：fetch failed"
+  ],
   "latestDate": "2026-09-20",
   "recordCount": 140,
-  "state": "ok",
+  "state": "awaiting_quote",
   "missingDates": [
-    "2026-09-13"
+    "2026-09-13",
+    "2026-09-21"
   ]
 }
