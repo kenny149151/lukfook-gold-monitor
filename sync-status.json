@@ -1,24 +1,24 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-09-28T23:56:02.266Z",
+  "checkedAt": "2026-09-29T05:40:29.998Z",
   "today": "2026-09-29",
-  "lastSuccessAt": "2026-09-28T23:56:02.266Z",
-  "officialQuotedAt": "2026-09-29 00:44:00",
+  "lastSuccessAt": "2026-09-29T05:40:29.998Z",
+  "officialQuotedAt": "2026-09-29 11:04:00",
   "intervalMinutes": 30,
   "sources": [
     {
       "name": "金价网历史表",
       "url": "https://www.jinjia.com.cn/lukfook/history.html",
       "ok": true,
-      "latestDate": "2026-09-28",
+      "latestDate": "2026-09-29",
       "records": 100
     },
     {
       "name": "新浪财经内地金条",
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
       "ok": true,
-      "latestDate": "2026-09-28",
-      "records": 16
+      "latestDate": "2026-09-29",
+      "records": 17
     },
     {
       "name": "六福官方商城",
