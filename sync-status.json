@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-01T14:26:23.945Z",
-  "today": "2026-10-01",
-  "lastSuccessAt": "2026-10-01T14:26:23.945Z",
+  "checkedAt": "2026-10-01T19:48:51.479Z",
+  "today": "2026-10-02",
+  "lastSuccessAt": "2026-10-01T19:48:51.479Z",
   "officialQuotedAt": "2026-10-01 09:41:00",
   "intervalMinutes": 30,
   "sources": [
@@ -18,7 +18,7 @@
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
       "ok": true,
       "latestDate": "2026-10-01",
-      "records": 17
+      "records": 16
     },
     {
       "name": "六福官方商城",
@@ -31,9 +31,10 @@
   "errors": [],
   "latestDate": "2026-10-01",
   "recordCount": 150,
-  "state": "ok",
+  "state": "awaiting_quote",
   "missingDates": [
     "2026-09-13",
-    "2026-09-27"
+    "2026-09-27",
+    "2026-10-02"
   ]
 }
