@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-03T05:45:10.714Z",
+  "checkedAt": "2026-10-03T10:38:30.777Z",
   "today": "2026-10-03",
-  "lastSuccessAt": "2026-10-03T05:45:10.714Z",
+  "lastSuccessAt": "2026-10-03T10:38:30.777Z",
   "officialQuotedAt": "2026-10-03 09:53:00",
   "intervalMinutes": 30,
   "sources": [
@@ -10,7 +10,7 @@
       "name": "金价网历史表",
       "url": "https://www.jinjia.com.cn/lukfook/history.html",
       "ok": true,
-      "latestDate": "2026-10-02",
+      "latestDate": "2026-10-03",
       "records": 100
     },
     {
