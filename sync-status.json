@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-07T09:15:19.420Z",
-  "today": "2026-10-07",
-  "lastSuccessAt": "2026-10-07T09:15:19.420Z",
+  "checkedAt": "2026-10-07T16:29:16.754Z",
+  "today": "2026-10-08",
+  "lastSuccessAt": "2026-10-07T16:29:16.754Z",
   "officialQuotedAt": "2026-10-07 09:40:00",
   "intervalMinutes": 30,
   "sources": [
@@ -31,9 +31,10 @@
   "errors": [],
   "latestDate": "2026-10-07",
   "recordCount": 156,
-  "state": "ok",
+  "state": "awaiting_quote",
   "missingDates": [
     "2026-09-13",
-    "2026-09-27"
+    "2026-09-27",
+    "2026-10-08"
   ]
 }
