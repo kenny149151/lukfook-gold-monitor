@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-18T14:48:57.000Z",
-  "today": "2026-10-18",
-  "lastSuccessAt": "2026-10-18T14:48:57.000Z",
+  "checkedAt": "2026-10-18T18:04:02.596Z",
+  "today": "2026-10-19",
+  "lastSuccessAt": "2026-10-18T18:04:02.596Z",
   "officialQuotedAt": "2026-10-17 09:50:00",
   "intervalMinutes": 30,
   "sources": [
@@ -35,6 +35,7 @@
   "missingDates": [
     "2026-09-13",
     "2026-09-27",
-    "2026-10-18"
+    "2026-10-18",
+    "2026-10-19"
   ]
 }
