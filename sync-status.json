@@ -1,23 +1,23 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-22T01:32:43.852Z",
+  "checkedAt": "2026-10-22T06:34:20.777Z",
   "today": "2026-10-22",
-  "lastSuccessAt": "2026-10-22T01:32:43.852Z",
-  "officialQuotedAt": "2026-10-22 09:28:00",
+  "lastSuccessAt": "2026-10-22T06:34:20.777Z",
+  "officialQuotedAt": "2026-10-22 14:20:00",
   "intervalMinutes": 30,
   "sources": [
     {
       "name": "金价网历史表",
       "url": "https://www.jinjia.com.cn/lukfook/history.html",
       "ok": true,
-      "latestDate": "2026-10-21",
+      "latestDate": "2026-10-22",
       "records": 100
     },
     {
       "name": "新浪财经内地金条",
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
       "ok": true,
-      "latestDate": "2026-10-21",
+      "latestDate": "2026-10-22",
       "records": 17
     },
     {
