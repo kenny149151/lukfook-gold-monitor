@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-24T21:52:27.654Z",
+  "checkedAt": "2026-10-25T00:19:27.009Z",
   "today": "2026-10-25",
-  "lastSuccessAt": "2026-10-24T21:52:27.654Z",
+  "lastSuccessAt": "2026-10-25T00:19:27.009Z",
   "officialQuotedAt": "2026-10-24 10:05:00",
   "intervalMinutes": 30,
   "sources": [
@@ -16,9 +16,7 @@
     {
       "name": "新浪财经内地金条",
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
-      "ok": true,
-      "latestDate": "2026-10-24",
-      "records": 17
+      "ok": false
     },
     {
       "name": "六福官方商城",
@@ -28,7 +26,9 @@
       "records": 1
     }
   ],
-  "errors": [],
+  "errors": [
+    "新浪财经内地金条：fetch failed"
+  ],
   "latestDate": "2026-10-24",
   "recordCount": 172,
   "state": "awaiting_quote",
