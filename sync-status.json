@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-26T06:08:40.955Z",
+  "checkedAt": "2026-10-26T12:54:43.800Z",
   "today": "2026-10-26",
-  "lastSuccessAt": "2026-10-26T06:08:40.955Z",
-  "officialQuotedAt": "2026-10-26 13:53:00",
+  "lastSuccessAt": "2026-10-26T12:54:43.800Z",
+  "officialQuotedAt": "2026-10-26 15:34:00",
   "intervalMinutes": 30,
   "sources": [
     {
