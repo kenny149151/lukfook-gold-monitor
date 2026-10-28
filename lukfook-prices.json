@@ -3181,5 +3181,42 @@
     "sourceUrl": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
     "quotedAt": "2026-10-27 15:24:00",
     "note": "按来源实际日期记录；同日保留较晚报价"
+  },
+  {
+    "date": "2026-10-28",
+    "fieldSources": {
+      "tianfu": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-28 10:11:00"
+      },
+      "gold": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-28 10:11:00"
+      },
+      "platinum": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-28 10:11:00"
+      },
+      "pt950": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-28 10:11:00"
+      }
+    },
+    "tianfu": 1071,
+    "source": "六福官方商城",
+    "sourceUrl": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+    "quotedAt": "2026-10-28 10:11:00",
+    "note": "内地金条报价；官方添富金优先",
+    "gold": 1215,
+    "platinum": 619,
+    "pt950": 594
   }
 ]
