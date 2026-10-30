@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-30T02:37:35.756Z",
+  "checkedAt": "2026-10-30T08:58:42.820Z",
   "today": "2026-10-30",
-  "lastSuccessAt": "2026-10-30T02:37:35.756Z",
-  "officialQuotedAt": "2026-10-30 10:32:00",
+  "lastSuccessAt": "2026-10-30T08:58:42.820Z",
+  "officialQuotedAt": "2026-10-30 15:24:00",
   "intervalMinutes": 30,
   "sources": [
     {
@@ -17,7 +17,7 @@
       "name": "新浪财经内地金条",
       "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
       "ok": true,
-      "latestDate": "2026-10-29",
+      "latestDate": "2026-10-30",
       "records": 17
     },
     {
