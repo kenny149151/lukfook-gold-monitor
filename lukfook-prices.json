@@ -3292,5 +3292,42 @@
     "note": "公开历史报价；铂金列与PT950口径核对，不作为足铂999",
     "tianfu": 1055,
     "platinum": 588
+  },
+  {
+    "date": "2026-10-31",
+    "fieldSources": {
+      "gold": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-31 12:47:00"
+      },
+      "pt950": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-31 12:47:00"
+      },
+      "tianfu": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-31 12:47:00"
+      },
+      "platinum": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-10-31 12:47:00"
+      }
+    },
+    "gold": 1163,
+    "pt950": 549,
+    "source": "六福官方商城",
+    "sourceUrl": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+    "quotedAt": "2026-10-31 12:47:00",
+    "note": "内地金条报价；官方添富金优先",
+    "tianfu": 1025,
+    "platinum": 572
   }
 ]
