@@ -1,16 +1,16 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-11-10T23:22:29.178Z",
+  "checkedAt": "2026-11-11T02:59:59.546Z",
   "today": "2026-11-11",
-  "lastSuccessAt": "2026-11-10T23:22:29.178Z",
-  "officialQuotedAt": "2026-11-10 15:23:00",
+  "lastSuccessAt": "2026-11-11T02:59:59.546Z",
+  "officialQuotedAt": "2026-11-11 10:58:00",
   "intervalMinutes": 30,
   "sources": [
     {
       "name": "金价网历史表",
       "url": "https://www.jinjia.com.cn/lukfook/history.html",
       "ok": true,
-      "latestDate": "2026-11-10",
+      "latestDate": "2026-11-11",
       "records": 100
     },
     {
@@ -24,21 +24,20 @@
       "name": "六福官方商城",
       "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
       "ok": true,
-      "latestDate": "2026-11-10",
+      "latestDate": "2026-11-11",
       "records": 1
     }
   ],
   "errors": [],
-  "latestDate": "2026-11-10",
-  "recordCount": 186,
-  "state": "awaiting_quote",
+  "latestDate": "2026-11-11",
+  "recordCount": 187,
+  "state": "ok",
   "missingDates": [
     "2026-09-13",
     "2026-09-27",
     "2026-10-18",
     "2026-10-25",
     "2026-11-01",
-    "2026-11-08",
-    "2026-11-11"
+    "2026-11-08"
   ]
 }
