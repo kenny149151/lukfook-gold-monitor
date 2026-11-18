@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-11-17T19:48:44.101Z",
+  "checkedAt": "2026-11-18T02:24:14.220Z",
   "today": "2026-11-18",
-  "lastSuccessAt": "2026-11-17T19:48:44.101Z",
-  "officialQuotedAt": "2026-11-17 15:08:00",
+  "lastSuccessAt": "2026-11-18T02:24:14.220Z",
+  "officialQuotedAt": "2026-11-18 10:21:00",
   "intervalMinutes": 30,
   "sources": [
     {
@@ -24,14 +24,14 @@
       "name": "六福官方商城",
       "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
       "ok": true,
-      "latestDate": "2026-11-17",
+      "latestDate": "2026-11-18",
       "records": 1
     }
   ],
   "errors": [],
-  "latestDate": "2026-11-17",
-  "recordCount": 192,
-  "state": "awaiting_quote",
+  "latestDate": "2026-11-18",
+  "recordCount": 193,
+  "state": "ok",
   "missingDates": [
     "2026-09-13",
     "2026-09-27",
@@ -39,7 +39,6 @@
     "2026-10-25",
     "2026-11-01",
     "2026-11-08",
-    "2026-11-15",
-    "2026-11-18"
+    "2026-11-15"
   ]
 }
