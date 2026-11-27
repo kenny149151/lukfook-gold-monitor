@@ -4148,30 +4148,37 @@
     "date": "2026-11-27",
     "fieldSources": {
       "gold": {
-        "name": "金价网历史表",
-        "url": "https://www.jinjia.com.cn/lukfook/history.html",
-        "rank": 20,
-        "quotedAt": null
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-11-27 15:29:00"
       },
       "pt950": {
-        "name": "金价网历史表",
-        "url": "https://www.jinjia.com.cn/lukfook/history.html",
-        "rank": 20,
-        "quotedAt": null
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-11-27 15:29:00"
       },
       "tianfu": {
-        "name": "新浪财经内地金条历史表",
-        "url": "https://vip.stock.finance.sina.com.cn/q/view/vGold_Matter_History.php?pp=0&pz=15",
-        "rank": 20,
-        "quotedAt": null
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-11-27 15:29:00"
+      },
+      "platinum": {
+        "name": "六福官方商城",
+        "url": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+        "rank": 100,
+        "quotedAt": "2026-11-27 15:29:00"
       }
     },
     "gold": 1066,
     "pt950": 501,
-    "source": "金价网历史表",
-    "sourceUrl": "https://www.jinjia.com.cn/lukfook/history.html",
-    "quotedAt": null,
+    "source": "六福官方商城",
+    "sourceUrl": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
+    "quotedAt": "2026-11-27 15:29:00",
     "note": "内地金条报价；官方添富金优先",
-    "tianfu": 940
+    "tianfu": 940,
+    "platinum": 522
   }
 ]
