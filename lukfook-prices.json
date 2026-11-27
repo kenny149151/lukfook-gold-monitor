@@ -4143,5 +4143,28 @@
     "sourceUrl": "https://www.lukfookeshop.com.cn/lfg-category/bracelet/G39G0021DS",
     "quotedAt": "2026-11-26 15:26:00",
     "note": "按来源实际日期记录；同日保留较晚报价"
+  },
+  {
+    "date": "2026-11-27",
+    "fieldSources": {
+      "gold": {
+        "name": "金价网历史表",
+        "url": "https://www.jinjia.com.cn/lukfook/history.html",
+        "rank": 20,
+        "quotedAt": null
+      },
+      "pt950": {
+        "name": "金价网历史表",
+        "url": "https://www.jinjia.com.cn/lukfook/history.html",
+        "rank": 20,
+        "quotedAt": null
+      }
+    },
+    "gold": 1066,
+    "pt950": 501,
+    "source": "金价网历史表",
+    "sourceUrl": "https://www.jinjia.com.cn/lukfook/history.html",
+    "quotedAt": null,
+    "note": "公开历史报价；铂金列与PT950口径核对，不作为足铂999"
   }
 ]
